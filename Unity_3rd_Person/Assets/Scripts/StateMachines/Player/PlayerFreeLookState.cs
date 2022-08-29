@@ -52,6 +52,5 @@ public class PlayerFreeLookState : PlayerBaseState
             stateMachine.transform.rotation,
             Quaternion.LookRotation(movement),
             deltaTime * stateMachine.RotationDamping);
-
     }
 }
