@@ -22,6 +22,7 @@ public class PlayerTargetingState : PlayerBaseState
         }
 
         Vector3 movement = CalculateMovement();
+
         Move(movement * stateMachine.TargetingMovementSpeed, deltaTime);
 
         FaceTarget();

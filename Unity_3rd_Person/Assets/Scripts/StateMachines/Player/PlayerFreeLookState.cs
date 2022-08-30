@@ -28,7 +28,10 @@ public class PlayerFreeLookState : PlayerBaseState
             return;
         }
 
-        stateMachine.Animator.SetFloat(FreeLookSpeedHash, 1, AnimatorDampTime, deltaTime);
+        if(stateMachine.IsWalking)
+            stateMachine.Animator.SetFloat(FreeLookSpeedHash, stateMachine.WalkingSpeedFactor, AnimatorDampTime, deltaTime);
+        else
+            stateMachine.Animator.SetFloat(FreeLookSpeedHash, 1f, AnimatorDampTime, deltaTime);
 
         FaceMovementDirection(movement, deltaTime);
     }
