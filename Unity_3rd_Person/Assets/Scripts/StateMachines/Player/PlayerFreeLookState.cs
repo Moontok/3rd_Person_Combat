@@ -12,6 +12,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.InputReader.TargetEvent += OnTarget;
+        stateMachine.InputReader.ToggleWalkEvent += OnToggleWalk;
 
         stateMachine.Animator.Play(FreeLookBlendTreeHash);
     }
@@ -20,18 +21,15 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         Vector3 movement = CalculateMovement();
 
-        Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
+        Move(movement * stateMachine.GetCurrentSpeed(), deltaTime);
 
         if (stateMachine.InputReader.MovementValue == Vector2.zero)
         {
-            stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0, AnimatorDampTime, deltaTime);
+            UpdateAnimator(deltaTime, 0);
             return;
         }
 
-        if(stateMachine.IsWalking)
-            stateMachine.Animator.SetFloat(FreeLookSpeedHash, stateMachine.WalkingSpeedFactor, AnimatorDampTime, deltaTime);
-        else
-            stateMachine.Animator.SetFloat(FreeLookSpeedHash, 1f, AnimatorDampTime, deltaTime);
+        UpdateAnimator(deltaTime, stateMachine.GetCurrentSpeedRatio());
 
         FaceMovementDirection(movement, deltaTime);
     }
@@ -39,6 +37,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.TargetEvent -= OnTarget;
+        stateMachine.InputReader.ToggleWalkEvent -= OnToggleWalk;
     }
 
     private void OnTarget()
@@ -68,5 +67,10 @@ public class PlayerFreeLookState : PlayerBaseState
             stateMachine.transform.rotation,
             Quaternion.LookRotation(movement),
             deltaTime * stateMachine.RotationDamping);
+    }
+
+    private void UpdateAnimator(float deltaTime, float value)
+    {
+        stateMachine.Animator.SetFloat(FreeLookSpeedHash, value, AnimatorDampTime, deltaTime);
     }
 }

@@ -11,8 +11,6 @@ public abstract class PlayerBaseState : State
 
     protected void Move(Vector3 motion, float deltaTime)
     {
-        if(stateMachine.IsWalking)
-            motion = motion * stateMachine.WalkingSpeedFactor;
         stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
     }
 
@@ -24,5 +22,13 @@ public abstract class PlayerBaseState : State
         lookPos.y = 0f;
 
         stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+    }
+
+    protected void OnToggleWalk()
+    {
+        if (!stateMachine.IsWalking())
+            stateMachine.SetToWalking();            
+        else
+            stateMachine.SetToRunning();
     }
 }

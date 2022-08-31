@@ -1906,11 +1906,12 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 1544550623327082181}
   <Targeter>k__BackingField: {fileID: 4344494254909669057}
   <ForceReceiver>k__BackingField: {fileID: 319068104228907592}
-  <FreeLookMovementSpeed>k__BackingField: 6
-  <TargetingMovementSpeed>k__BackingField: 5
-  <WalkingSpeedFactor>k__BackingField: 0.3
+  <MaxSpeed>k__BackingField: 6
+  <RunSpeedRatio>k__BackingField: 1
+  <WalkSpeedRatio>k__BackingField: 0.3
+  <TargetingSpeedRatio>k__BackingField: 0.9
   <RotationDamping>k__BackingField: 10
-  <IsWalking>k__BackingField: 0
+  <IsWalkingNext>k__BackingField: 1
 --- !u!114 &7574179889132126905
 MonoBehaviour:
   m_ObjectHideFlags: 0

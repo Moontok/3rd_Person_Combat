@@ -8,6 +8,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public event Action DodgeEvent;
     public event Action TargetEvent;
     public event Action CancelEvent;
+    public event Action ToggleWalkEvent;
 
     public Vector2 MovementValue { get; private set; }
 
@@ -63,5 +64,12 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         if (context.performed) return;
 
         CancelEvent?.Invoke();
+    }
+
+    public void OnToggleWalk(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        ToggleWalkEvent?.Invoke();
     }
 }

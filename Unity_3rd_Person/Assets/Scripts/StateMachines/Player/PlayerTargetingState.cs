@@ -3,12 +3,15 @@ using UnityEngine;
 public class PlayerTargetingState : PlayerBaseState
 {
     private readonly int TargetingBlendTreeHash = Animator.StringToHash("TargetingBlendTree");
+    private readonly int TargetingForwardHash = Animator.StringToHash("TargetingForward");
+    private readonly int TargetingRightHash = Animator.StringToHash("TargetingRight");
 
     public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
         stateMachine.InputReader.CancelEvent += OnCancel;
+        stateMachine.InputReader.ToggleWalkEvent += OnToggleWalk;
 
         stateMachine.Animator.Play(TargetingBlendTreeHash);
     }
@@ -23,7 +26,11 @@ public class PlayerTargetingState : PlayerBaseState
 
         Vector3 movement = CalculateMovement();
 
-        Move(movement * stateMachine.TargetingMovementSpeed, deltaTime);
+        Move(movement * stateMachine.GetCurrentSpeed() * stateMachine.TargetingSpeedRatio, deltaTime);
+
+        if (stateMachine.InputReader.MovementValue == Vector2.zero)
+            UpdateAnimator(deltaTime, 0);
+        UpdateAnimator(deltaTime, stateMachine.GetCurrentSpeedRatio());
 
         FaceTarget();
     }
@@ -31,6 +38,7 @@ public class PlayerTargetingState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.CancelEvent -= OnCancel;
+        stateMachine.InputReader.ToggleWalkEvent -= OnToggleWalk;
     }
 
     private void OnCancel()
@@ -48,5 +56,14 @@ public class PlayerTargetingState : PlayerBaseState
         movement += stateMachine.transform.forward * stateMachine.InputReader.MovementValue.y;
 
         return movement;
+    }
+
+    private void UpdateAnimator(float deltaTime, float value)
+    {
+        float xMovement = stateMachine.InputReader.MovementValue.x * value;
+        float yMovement = stateMachine.InputReader.MovementValue.y * value;
+
+        stateMachine.Animator.SetFloat(TargetingForwardHash, yMovement, 0.1f, deltaTime);
+        stateMachine.Animator.SetFloat(TargetingRightHash, xMovement, 0.1f, deltaTime);
     }
 }
