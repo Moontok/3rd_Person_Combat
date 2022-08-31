@@ -1913,8 +1913,17 @@ MonoBehaviour:
   <RotationDamping>k__BackingField: 10
   <Attacks>k__BackingField:
   - <AnimationName>k__BackingField: slash1
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 1
+    <ComboAttackTime>k__BackingField: 0.9
   - <AnimationName>k__BackingField: slash2
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 2
+    <ComboAttackTime>k__BackingField: 0.9
   - <AnimationName>k__BackingField: slash3
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: 0
 --- !u!114 &7574179889132126905
 MonoBehaviour:
   m_ObjectHideFlags: 0
