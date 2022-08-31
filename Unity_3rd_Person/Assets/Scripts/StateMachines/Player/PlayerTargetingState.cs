@@ -8,12 +8,14 @@ public class PlayerTargetingState : PlayerBaseState
 
     public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
+    private const float CrossFadeDuration = 0.5f;
+
     public override void Enter()
     {
         stateMachine.InputReader.CancelEvent += OnCancel;
         stateMachine.InputReader.ToggleWalkEvent += OnToggleWalk;
 
-        stateMachine.Animator.Play(TargetingBlendTreeHash);
+        stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
