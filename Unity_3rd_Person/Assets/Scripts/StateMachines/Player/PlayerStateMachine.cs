@@ -7,16 +7,12 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
-    //[field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
-    //[field: SerializeField] public float TargetingMovementSpeed { get; private set; }
-    //[field: SerializeField] public float CurrentSpeed { get; private set; }
     [field: SerializeField] public float MaxSpeed { get; private set; }
     [field: SerializeField] public float RunSpeedRatio { get; private set; }
     [field: SerializeField] public float WalkSpeedRatio { get; private set; }
     [field: SerializeField] public float TargetingSpeedRatio { get; private set; }
-    //[field: SerializeField] public float CurrentSpeedRatio { get; private set; }
     [field: SerializeField] public float RotationDamping { get; private set; }
-    //[field: SerializeField] public bool IsWalkingNext { get; set; }
+    [field: SerializeField] public Attack[] Attacks { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
 

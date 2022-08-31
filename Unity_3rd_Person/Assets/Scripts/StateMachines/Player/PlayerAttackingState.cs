@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerAttackingState : PlayerBaseState
 {
-    public PlayerAttackingState(PlayerStateMachine stateMachine) : base(stateMachine)
+    private Attack attack = null;
+
+    public PlayerAttackingState(PlayerStateMachine stateMachine, int attackId) : base(stateMachine)
     {
+        attack = stateMachine.Attacks[attackId];
     }
 
     public override void Enter()
     {
+        stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, .1f);
     }
 
     public override void Tick(float deltaTime)

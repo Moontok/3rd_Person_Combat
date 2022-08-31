@@ -1911,7 +1911,10 @@ MonoBehaviour:
   <WalkSpeedRatio>k__BackingField: 0.3
   <TargetingSpeedRatio>k__BackingField: 0.9
   <RotationDamping>k__BackingField: 10
-  <IsWalkingNext>k__BackingField: 1
+  <Attacks>k__BackingField:
+  - <AnimationName>k__BackingField: slash1
+  - <AnimationName>k__BackingField: slash2
+  - <AnimationName>k__BackingField: slash3
 --- !u!114 &7574179889132126905
 MonoBehaviour:
   m_ObjectHideFlags: 0

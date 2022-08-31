@@ -78,7 +78,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     {
         if (context.performed)
             IsAttacking = true;
-        else
+        else if (context.canceled)
             IsAttacking = false;
     }
 }
