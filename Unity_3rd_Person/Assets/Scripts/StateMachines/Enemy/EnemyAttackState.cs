@@ -14,6 +14,7 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void Enter()
     {
+        stateMachine.weapon.SetAttack(stateMachine.AttackDamage);
         stateMachine.Animator.CrossFadeInFixedTime(AttackHash, TransitionDuration);
     }
 
