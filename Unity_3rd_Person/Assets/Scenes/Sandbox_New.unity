@@ -124,7 +124,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: b182e960842765648add1ef724718318, type: 2}
 --- !u!1001 &17282916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -303,11 +303,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 143056088690564811, guid: 659d48aa00887734db8ea13a7ace1fbc,
-        type: 3}
-      propertyPath: <AggroRange>k__BackingField
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3048503984504561790, guid: 659d48aa00887734db8ea13a7ace1fbc,
         type: 3}
       propertyPath: m_Name
@@ -321,17 +316,17 @@ PrefabInstance:
     - target: {fileID: 4205190223235239577, guid: 659d48aa00887734db8ea13a7ace1fbc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7224202
+      value: -2.91
       objectReference: {fileID: 0}
     - target: {fileID: 4205190223235239577, guid: 659d48aa00887734db8ea13a7ace1fbc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.320777
+      value: 2.757
       objectReference: {fileID: 0}
     - target: {fileID: 4205190223235239577, guid: 659d48aa00887734db8ea13a7ace1fbc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.779701
+      value: 27.87
       objectReference: {fileID: 0}
     - target: {fileID: 4205190223235239577, guid: 659d48aa00887734db8ea13a7ace1fbc,
         type: 3}
@@ -1425,17 +1420,17 @@ PrefabInstance:
     - target: {fileID: 5687667663316876808, guid: 13025c9b1298dbc469e8fc1d7a00cdca,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.17842482
+      value: 0.1784248
       objectReference: {fileID: 0}
     - target: {fileID: 5687667663316876808, guid: 13025c9b1298dbc469e8fc1d7a00cdca,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008465141
+      value: 0.000000008465139
       objectReference: {fileID: 0}
     - target: {fileID: 5687667663316876808, guid: 13025c9b1298dbc469e8fc1d7a00cdca,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000015350229
+      value: -0.0000000015350226
       objectReference: {fileID: 0}
     - target: {fileID: 7378136120630425927, guid: 13025c9b1298dbc469e8fc1d7a00cdca,
         type: 3}

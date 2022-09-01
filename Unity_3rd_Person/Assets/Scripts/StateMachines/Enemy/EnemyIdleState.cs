@@ -23,7 +23,7 @@ public class EnemyIdleState : EnemyBaseState
 
         if(IsInAggroRange())
         {
-            Debug.Log("In Range!");
+            stateMachine.SwitchState(new EnemyChasingState(stateMachine));
             return;
         }
 
