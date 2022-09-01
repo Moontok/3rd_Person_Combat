@@ -823,6 +823,7 @@ MonoBehaviour:
   <Agent>k__BackingField: {fileID: 2792666758781703144}
   <MovementSpeed>k__BackingField: 3
   <AggroRange>k__BackingField: 10
+  <AttackRange>k__BackingField: 1.5
 --- !u!114 &7260258842243948124
 MonoBehaviour:
   m_ObjectHideFlags: 0

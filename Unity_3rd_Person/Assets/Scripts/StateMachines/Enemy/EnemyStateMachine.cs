@@ -12,6 +12,7 @@ public class EnemyStateMachine : StateMachine
 
     [field: SerializeField] public float MovementSpeed { get; private set; }
     [field: SerializeField] public float AggroRange { get; private set; }
+    [field: SerializeField] public float AttackRange { get; private set; }
 
     public GameObject Player { get; private set; }
 
