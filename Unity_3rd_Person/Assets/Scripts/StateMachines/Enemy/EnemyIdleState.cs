@@ -19,6 +19,14 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
+        Move(deltaTime);
+
+        if(IsInAggroRange())
+        {
+            Debug.Log("In Range!");
+            return;
+        }
+
         stateMachine.Animator.SetFloat(SpeedHash, 0, AnimatorDampTime, deltaTime);
     }
 
