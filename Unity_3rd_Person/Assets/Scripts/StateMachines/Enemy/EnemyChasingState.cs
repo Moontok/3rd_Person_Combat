@@ -29,7 +29,7 @@ public class EnemyChasingState : EnemyBaseState
             stateMachine.SwitchState(new EnemyAttackState(stateMachine));
             return;
         }
-
+        
         MoveToPlayer(deltaTime);
         FacePlayer();
 

@@ -828,6 +828,7 @@ MonoBehaviour:
   <AggroRange>k__BackingField: 10
   <AttackRange>k__BackingField: 1.5
   <AttackDamage>k__BackingField: 20
+  <AttackKnockback>k__BackingField: 5
 --- !u!114 &7260258842243948124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,6 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7017868183918036739}
+  agent: {fileID: 2792666758781703144}
   drag: 0.3
 --- !u!114 &7587415782609248773
 MonoBehaviour:
