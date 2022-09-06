@@ -1930,7 +1930,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0.9
     <ForceTime>k__BackingField: 0
     <Force>k__BackingField: 0
-    <Knockback>k__BackingField: 4
+    <Knockback>k__BackingField: 2
     <Damage>k__BackingField: 15
   - <AnimationName>k__BackingField: slash3
     <TransitionDuration>k__BackingField: 0.1
