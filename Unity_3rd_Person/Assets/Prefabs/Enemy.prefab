@@ -823,10 +823,11 @@ MonoBehaviour:
   <Controller>k__BackingField: {fileID: 7017868183918036739}
   <ForceReceiver>k__BackingField: {fileID: 7260258842243948124}
   <Agent>k__BackingField: {fileID: 2792666758781703144}
-  <weapon>k__BackingField: {fileID: 132106871893441113}
+  <Weapon>k__BackingField: {fileID: 132106871893441113}
+  <Health>k__BackingField: {fileID: 8879792050925553567}
   <MovementSpeed>k__BackingField: 3
   <AggroRange>k__BackingField: 10
-  <AttackRange>k__BackingField: 1.5
+  <AttackRange>k__BackingField: 1
   <AttackDamage>k__BackingField: 20
   <AttackKnockback>k__BackingField: 5
 --- !u!114 &7260258842243948124
