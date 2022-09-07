@@ -16,8 +16,12 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float WalkSpeedRatio { get; private set; }
     [field: SerializeField] public float TargetingSpeedRatio { get; private set; }
     [field: SerializeField] public float RotationDamping { get; private set; }
+    [field: SerializeField] public float DodgeDuration { get; private set; }
+    [field: SerializeField] public float DodgeLength { get; private set; }
+    [field: SerializeField] public float DodgeCoolDown { get; private set; }
     [field: SerializeField] public Attack[] Attacks { get; private set; }
 
+    public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
     public Transform MainCameraTransform { get; private set; }
 
     private float currentSpeed = 0f;
@@ -83,5 +87,10 @@ public class PlayerStateMachine : StateMachine
     public bool IsWalking()
     {
         return !isWalkingNext;
+    }
+
+    public void SetDodgeTime(float dodgeTime)
+    {
+        PreviousDodgeTime = dodgeTime;
     }
 }
