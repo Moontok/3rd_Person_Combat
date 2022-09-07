@@ -18,7 +18,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float RotationDamping { get; private set; }
     [field: SerializeField] public float DodgeDuration { get; private set; }
     [field: SerializeField] public float DodgeLength { get; private set; }
-    [field: SerializeField] public float DodgeCoolDown { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
     [field: SerializeField] public float StartFallingTime { get; private set; }
     [field: SerializeField] public Attack[] Attacks { get; private set; }
@@ -89,10 +88,5 @@ public class PlayerStateMachine : StateMachine
     public bool IsWalking()
     {
         return !isWalkingNext;
-    }
-
-    public void SetDodgeTime(float dodgeTime)
-    {
-        PreviousDodgeTime = dodgeTime;
     }
 }
