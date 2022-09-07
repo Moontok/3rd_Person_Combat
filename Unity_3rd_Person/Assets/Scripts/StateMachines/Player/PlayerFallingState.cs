@@ -15,6 +15,7 @@ public class PlayerFallingState : PlayerBaseState
     public override void Enter()
     {
         momentum = stateMachine.Controller.velocity;
+        momentum.y = 0;
 
         stateMachine.Animator.CrossFadeInFixedTime(FallingHash, CrossFadeDuration);
     }
@@ -24,7 +25,7 @@ public class PlayerFallingState : PlayerBaseState
         Move(momentum, deltaTime);
 
         if (stateMachine.Controller.isGrounded)
-            ReturnToLocomotion();
+            stateMachine.SwitchState(new PlayerLandingState(stateMachine));
 
         FaceTarget();
     }

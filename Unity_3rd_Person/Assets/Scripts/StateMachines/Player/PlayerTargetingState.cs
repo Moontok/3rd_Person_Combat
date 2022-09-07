@@ -29,7 +29,7 @@ public class PlayerTargetingState : PlayerBaseState
         if (!stateMachine.Controller.isGrounded)
         {
             airTime += deltaTime;
-            if (airTime >= .3f)
+            if (airTime >= stateMachine.StartFallingTime)
             {
                 stateMachine.SwitchState(new PlayerFallingState(stateMachine));
                 return;

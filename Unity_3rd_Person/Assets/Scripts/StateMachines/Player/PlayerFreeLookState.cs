@@ -8,7 +8,7 @@ public class PlayerFreeLookState : PlayerBaseState
     private float airTime = 0f;
 
     private const float AnimatorDampTime = 0.1f;
-    private const float CrossFadeDuration = 0.5f;
+    private const float CrossFadeDuration = 0.1f;
 
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine){}
 
@@ -26,7 +26,7 @@ public class PlayerFreeLookState : PlayerBaseState
         if (!stateMachine.Controller.isGrounded)
         {
             airTime += deltaTime;
-            if (airTime >= .3f)
+            if (airTime >= stateMachine.StartFallingTime)
             {
                 stateMachine.SwitchState(new PlayerFallingState(stateMachine));
                 return;
