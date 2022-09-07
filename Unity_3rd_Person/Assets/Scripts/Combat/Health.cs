@@ -6,6 +6,8 @@ public class Health : MonoBehaviour
     public event Action OnTakeDamage;
     public event Action OnDie;
 
+    public bool IsDead => health == 0;
+
     [SerializeField] private int maxHealth = 100;
 
     private int health = 0;

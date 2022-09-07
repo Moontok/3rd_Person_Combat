@@ -22,9 +22,9 @@ public class EnemyAttackState : EnemyBaseState
     {
         if (GetNormalizedTime(stateMachine.Animator) >= 1)
             stateMachine.SwitchState(new EnemyChasingState(stateMachine));
+
+        FacePlayer();
     }
 
-    public override void Exit()
-    {
-    }
+    public override void Exit(){}
 }
