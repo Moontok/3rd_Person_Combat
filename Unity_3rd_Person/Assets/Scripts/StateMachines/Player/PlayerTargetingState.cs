@@ -4,6 +4,7 @@ public class PlayerTargetingState : PlayerBaseState
 {
     private Vector2 dodgingDirectionInput = Vector2.zero;
     private float remainingDodgeTime = 0f;
+    private float airTime = 0f;
 
     private readonly int TargetingBlendTreeHash = Animator.StringToHash("TargetingBlendTree");
     private readonly int TargetingForwardHash = Animator.StringToHash("TargetingForward");
@@ -18,13 +19,29 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine.InputReader.CancelEvent += OnCancel;
         stateMachine.InputReader.ToggleWalkEvent += OnToggleWalk;
         stateMachine.InputReader.DodgeEvent += OnDodge;
+        stateMachine.InputReader.JumpEvent += OnJump;
 
         stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-        if(stateMachine.InputReader.IsAttacking)
+        if (!stateMachine.Controller.isGrounded)
+        {
+            airTime += deltaTime;
+            if (airTime >= .3f)
+            {
+                stateMachine.SwitchState(new PlayerFallingState(stateMachine));
+                return;
+            }
+        }
+        else
+        {
+            airTime = 0f;
+        }
+
+
+        if (stateMachine.InputReader.IsAttacking)
         {
             stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
             return;
@@ -58,6 +75,7 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine.InputReader.CancelEvent -= OnCancel;
         stateMachine.InputReader.ToggleWalkEvent -= OnToggleWalk;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
+        stateMachine.InputReader.JumpEvent -= OnJump;
     }
 
     private void OnCancel()
@@ -74,6 +92,11 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine.SetDodgeTime(Time.time);
         dodgingDirectionInput = stateMachine.InputReader.MovementValue;
         remainingDodgeTime = stateMachine.DodgeDuration;
+    }
+
+    private void OnJump()
+    {
+        stateMachine.SwitchState(new PlayerJumpingFirstHalfState(stateMachine, true));
     }
 
     private Vector3 CalculateMovement(float deltaTime)

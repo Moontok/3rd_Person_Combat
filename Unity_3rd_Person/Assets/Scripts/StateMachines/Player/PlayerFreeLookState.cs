@@ -5,6 +5,8 @@ public class PlayerFreeLookState : PlayerBaseState
     private readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed");
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
 
+    private float airTime = 0f;
+
     private const float AnimatorDampTime = 0.1f;
     private const float CrossFadeDuration = 0.5f;
 
@@ -14,12 +16,27 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.TargetEvent += OnTarget;
         stateMachine.InputReader.ToggleWalkEvent += OnToggleWalk;
+        stateMachine.InputReader.JumpEvent += OnJump;
 
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
+        if (!stateMachine.Controller.isGrounded)
+        {
+            airTime += deltaTime;
+            if (airTime >= .3f)
+            {
+                stateMachine.SwitchState(new PlayerFallingState(stateMachine));
+                return;
+            }
+        }
+        else
+        {
+            airTime = 0f;
+        }
+
         if (stateMachine.InputReader.IsAttacking)
         {
             stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
@@ -45,6 +62,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.ToggleWalkEvent -= OnToggleWalk;
+        stateMachine.InputReader.JumpEvent -= OnJump;
     }
 
     private void OnTarget()
@@ -52,6 +70,11 @@ public class PlayerFreeLookState : PlayerBaseState
         if (!stateMachine.Targeter.SelectTarget()) return;
 
         stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
+    }
+
+    private void OnJump()
+    {
+        stateMachine.SwitchState(new PlayerJumpingFirstHalfState(stateMachine, false));
     }
 
     private Vector3 CalculateMovement()
