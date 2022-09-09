@@ -19,6 +19,8 @@ public class PlayerJumpingSecondHalfState : PlayerBaseState
         momentum.y = 0;
 
         stateMachine.Animator.CrossFadeInFixedTime(JumpingSecondHalfBlendTreeHash, CrossFadeDuration);
+
+        stateMachine.LedgeDetector.OnLedgeDetect += HandleLedgeDetect;
     }
 
     public override void Tick(float deltaTime)
@@ -36,5 +38,6 @@ public class PlayerJumpingSecondHalfState : PlayerBaseState
 
     public override void Exit()
     {
+        stateMachine.LedgeDetector.OnLedgeDetect -= HandleLedgeDetect;
     }
 }

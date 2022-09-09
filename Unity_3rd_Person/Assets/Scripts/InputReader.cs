@@ -11,7 +11,6 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public event Action JumpEvent;
     public event Action DodgeEvent;
     public event Action TargetEvent;
-    public event Action CancelEvent;
     public event Action ToggleWalkEvent;
 
     private Controls controls = null;
@@ -56,16 +55,9 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnTarget(InputAction.CallbackContext context)
     {
-        if (context.performed) return;
+        if (!context.performed) return;
 
         TargetEvent?.Invoke();
-    }
-
-    public void OnCancel(InputAction.CallbackContext context)
-    {
-        if (context.performed) return;
-
-        CancelEvent?.Invoke();
     }
 
     public void OnToggleWalk(InputAction.CallbackContext context)

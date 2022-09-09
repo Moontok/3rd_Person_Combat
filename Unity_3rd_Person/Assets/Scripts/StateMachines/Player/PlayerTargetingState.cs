@@ -8,13 +8,13 @@ public class PlayerTargetingState : PlayerBaseState
     private readonly int TargetingForwardHash = Animator.StringToHash("TargetingForward");
     private readonly int TargetingRightHash = Animator.StringToHash("TargetingRight");
 
-    public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
-
     private const float CrossFadeDuration = 0.1f;
+
+    public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
-        stateMachine.InputReader.CancelEvent += OnCancel;
+        stateMachine.InputReader.TargetEvent += OnTarget;
         stateMachine.InputReader.ToggleWalkEvent += OnToggleWalk;
         stateMachine.InputReader.DodgeEvent += OnDodge;
         stateMachine.InputReader.JumpEvent += OnJump;
@@ -61,8 +61,6 @@ public class PlayerTargetingState : PlayerBaseState
 
         Move(movement * stateMachine.GetCurrentSpeed() * stateMachine.TargetingSpeedRatio, deltaTime);
 
-        if (stateMachine.InputReader.MovementValue == Vector2.zero)
-            UpdateAnimator(deltaTime, 0);
         UpdateAnimator(deltaTime, stateMachine.GetCurrentSpeedRatio());
 
         FaceTarget();
@@ -70,13 +68,13 @@ public class PlayerTargetingState : PlayerBaseState
 
     public override void Exit()
     {
-        stateMachine.InputReader.CancelEvent -= OnCancel;
+        stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.ToggleWalkEvent -= OnToggleWalk;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
         stateMachine.InputReader.JumpEvent -= OnJump;
     }
 
-    private void OnCancel()
+    private void OnTarget()
     {
         stateMachine.Targeter.Cancel();
 

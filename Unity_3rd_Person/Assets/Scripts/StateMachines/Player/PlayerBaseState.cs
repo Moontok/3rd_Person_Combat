@@ -44,4 +44,9 @@ public abstract class PlayerBaseState : State
         else
             stateMachine.SetToRunning();
     }
+
+    protected void HandleLedgeDetect(Vector3 ledgeFoward, Vector3 closestPoint)
+    {
+        stateMachine.SwitchState(new PlayerHangingState(stateMachine, ledgeFoward, closestPoint));
+    }
 }

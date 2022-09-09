@@ -73,15 +73,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""7161e64e-a56c-4dfd-aa2a-26eea7a2acaa"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""ToggleWalk"",
                     ""type"": ""Button"",
                     ""id"": ""e7d409d6-fa5f-4175-9152-a47e4b3446aa"",
@@ -321,28 +312,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""94e51fac-b130-4e8a-affd-bea535b3b64d"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse & Keyboard"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5f51eabe-1478-484b-85bd-0226d8cb2936"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a84cf3d1-e606-46db-98d9-0331c2877bd6"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
@@ -436,7 +405,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Target = m_Player.FindAction("Target", throwIfNotFound: true);
-        m_Player_Cancel = m_Player.FindAction("Cancel", throwIfNotFound: true);
         m_Player_ToggleWalk = m_Player.FindAction("ToggleWalk", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
@@ -504,7 +472,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Target;
-    private readonly InputAction m_Player_Cancel;
     private readonly InputAction m_Player_ToggleWalk;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Block;
@@ -517,7 +484,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Target => m_Wrapper.m_Player_Target;
-        public InputAction @Cancel => m_Wrapper.m_Player_Cancel;
         public InputAction @ToggleWalk => m_Wrapper.m_Player_ToggleWalk;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Block => m_Wrapper.m_Player_Block;
@@ -545,9 +511,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Target.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTarget;
                 @Target.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTarget;
                 @Target.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTarget;
-                @Cancel.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
                 @ToggleWalk.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleWalk;
                 @ToggleWalk.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleWalk;
                 @ToggleWalk.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleWalk;
@@ -576,9 +539,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Target.started += instance.OnTarget;
                 @Target.performed += instance.OnTarget;
                 @Target.canceled += instance.OnTarget;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
                 @ToggleWalk.started += instance.OnToggleWalk;
                 @ToggleWalk.performed += instance.OnToggleWalk;
                 @ToggleWalk.canceled += instance.OnToggleWalk;
@@ -617,7 +577,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnTarget(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
         void OnToggleWalk(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
